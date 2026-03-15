@@ -760,10 +760,10 @@
                     </p>
 
                     <div
-                        class="relative w-full max-w-5xl group cursor-pointer img-zoom-wrapper"
+                        class="relative w-full max-w-5xl group cursor-pointer"
                     >
                         <button
-                            class="absolute -left-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10"
+                            class="series-btn-prev absolute -left-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10"
                         >
                             <i
                                 data-lucide="chevron-left"
@@ -771,30 +771,74 @@
                             ></i>
                         </button>
                         <button
-                            class="absolute -right-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10"
+                            class="series-btn-next absolute -right-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10"
                         >
                             <i
                                 data-lucide="chevron-right"
                                 class="w-12 h-12 font-thin"
                             ></i>
                         </button>
-                        <div
-                            class="aspect-video w-full bg-gray-200 overflow-hidden relative"
-                        >
-                            <img
-                                src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                                alt="Event presentation"
-                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"
-                            />
-                        </div>
+                        
+                        <!-- Slider Container -->
+                        <div class="series-slider flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar w-full">
+                            
+                            <!-- Slide 1 -->
+                            <div class="flex-none w-full snap-start">
+                                <div class="aspect-video w-full bg-gray-200 overflow-hidden relative img-zoom-wrapper">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                                        alt="Event presentation"
+                                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"
+                                    />
+                                </div>
+                                <div class="flex justify-center mt-8">
+                                    <a
+                                        href="#"
+                                        class="bg-lacquer text-white font-sans text-sm px-8 py-3 uppercase tracking-wider hover:bg-black transition shadow-lg shrink-0 w-[80%] md:w-auto text-center"
+                                    >
+                                        Art.itecture #01
+                                    </a>
+                                </div>
+                            </div>
 
-                        <div class="flex justify-center mt-8">
-                            <a
-                                href="#"
-                                class="bg-lacquer text-white font-sans text-sm px-8 py-3 uppercase tracking-wider hover:bg-black transition shadow-lg shrink-0 w-[80%] md:w-auto text-center"
-                            >
-                                Art.itecture #01
-                            </a>
+                            <!-- Slide 2 -->
+                            <div class="flex-none w-full snap-start">
+                                <div class="aspect-video w-full bg-gray-200 overflow-hidden relative img-zoom-wrapper">
+                                    <img
+                                        src="./images/banner_1.jpg"
+                                        alt="Event presentation 2"
+                                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"
+                                    />
+                                </div>
+                                <div class="flex justify-center mt-8">
+                                    <a
+                                        href="#"
+                                        class="bg-lacquer text-white font-sans text-sm px-8 py-3 uppercase tracking-wider hover:bg-black transition shadow-lg shrink-0 w-[80%] md:w-auto text-center"
+                                    >
+                                        Art.itecture #02
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="flex-none w-full snap-start">
+                                <div class="aspect-video w-full bg-gray-200 overflow-hidden relative img-zoom-wrapper">
+                                    <img
+                                        src="./images/banner_2.jpg"
+                                        alt="Event presentation 3"
+                                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"
+                                    />
+                                </div>
+                                <div class="flex justify-center mt-8">
+                                    <a
+                                        href="#"
+                                        class="bg-lacquer text-white font-sans text-sm px-8 py-3 uppercase tracking-wider hover:bg-black transition shadow-lg shrink-0 w-[80%] md:w-auto text-center"
+                                    >
+                                        Art.itecture #03
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </section>
@@ -868,6 +912,7 @@
                                             type="number"
                                             name="age"
                                             class="input-field"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -898,6 +943,7 @@
                                         type="text"
                                         name="occupation"
                                         class="input-field"
+                                        required
                                     />
                                 </div>
 
@@ -912,6 +958,7 @@
                                         type="text"
                                         name="company"
                                         class="input-field"
+                                        required
                                     />
                                 </div>
 
