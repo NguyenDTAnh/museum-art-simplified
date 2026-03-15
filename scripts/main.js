@@ -46,8 +46,12 @@ function initSplashScreen() {
     return;
   }
 
+  // Khóa scroll khi preloader đang chạy
+  document.body.style.overflow = 'hidden';
+
   if (!enhancedMotion) {
     splashScreen.style.display = "none";
+    document.body.style.overflow = '';
     gsap.from(".hero-title", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" });
     gsap.from(".hero-description", { opacity: 0, y: 18, duration: 0.6, delay: 0.12, ease: "power2.out" });
     gsap.from(".hero-provider", { opacity: 0, y: 12, duration: 0.5, delay: 0.2, ease: "power2.out" });
@@ -102,7 +106,7 @@ function initSplashScreen() {
         if (!isComplete) {
           autoMode = true;
         }
-      }, 3500);
+      }, 1000); // Start faster
     };
 
     p.draw = () => {
@@ -113,8 +117,8 @@ function initSplashScreen() {
       }
 
       if (autoMode) {
-        const rw = p.windowWidth < 700 ? 50 : 200;
-        const rh = p.windowWidth < 700 ? 35 : 80;
+        const rw = p.windowWidth < 700 ? 80 : 200;
+        const rh = p.windowWidth < 700 ? 60 : 80;
 
         const autoY = p.windowHeight / 2 + p.sin(p.frameCount * 0.05) * (p.windowHeight / 3);
         const autoX = p.windowWidth / 2 + p.cos(p.frameCount * 0.02) * (p.windowWidth / 4);
@@ -145,6 +149,10 @@ function initSplashScreen() {
             yPercent: -100,
             duration: 1.2,
             ease: "power4.inOut",
+            onComplete: () => {
+              splashScreen.style.display = "none";
+              document.body.style.overflow = '';
+            }
           })
           .from(".hero-title", { opacity: 0, y: 50, duration: 1, ease: "power3.out" }, "-=0.5")
           .from(".hero-description", { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, "-=0.7")
@@ -154,49 +162,6 @@ function initSplashScreen() {
 
     p.windowResized = () => {
       p.resizeCanvas(p.windowWidth, p.windowHeight);
-    };
-
-    const addUserShape = (x, y) => {
-      if (isComplete) {
-        return;
-      }
-
-      autoMode = false;
-
-      const rw = p.windowWidth < 700 ? 50 : p.random(100, 250);
-      const rh = p.windowWidth < 700 ? 35 : p.random(50, 100);
-      shapes.push(new ShapeRect(x, y, rw, rh));
-
-      scrollLeftVal -= scrollSpeed;
-      gsap.set(scrollWrapper, { x: scrollLeftVal });
-    };
-
-    p.mousePressed = () => {
-      addUserShape(p.mouseX, p.mouseY);
-    };
-
-    p.mouseDragged = () => {
-      addUserShape(p.mouseX, p.mouseY);
-    };
-
-    const defaultTouchStarted = p.touchStarted;
-    p.touchStarted = () => {
-      if (p.touches.length > 0) {
-        addUserShape(p.touches[0].x, p.touches[0].y);
-      }
-      if (defaultTouchStarted) {
-        defaultTouchStarted();
-      }
-    };
-
-    const defaultTouchMoved = p.touchMoved;
-    p.touchMoved = () => {
-      if (p.touches.length > 0) {
-        addUserShape(p.touches[0].x, p.touches[0].y);
-      }
-      if (defaultTouchMoved) {
-        defaultTouchMoved();
-      }
     };
 
     class ShapeRect {
@@ -286,12 +251,12 @@ function initBaseEffects() {
     const tween = gsap.from(section, {
       scrollTrigger: {
         trigger: section,
-        start: "top 85%",
+        start: "top 95%", // Trigger sớm hơn để tránh bị kẹt ở cuối trang
         toggleActions: "play none none none",
       },
-      y: 40,
+      y: 30,
       opacity: 0,
-      duration: 1.2,
+      duration: 1,
       ease: "power3.out",
     });
     addTrigger(tween);
@@ -660,6 +625,7 @@ function initSpeakerAnimations() {
   }
 
   const timelineItems = gsap.utils.toArray(".speaker-timeline-item");
+  const timelineContainer = document.querySelector(".reveal-list");
   if (timelineItems.length > 0) {
     const timelineTween = gsap.from(timelineItems, {
       opacity: 0,
@@ -668,9 +634,9 @@ function initSpeakerAnimations() {
       duration: 0.6,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: timelineItems[0],
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        trigger: timelineContainer || timelineItems[0],
+        start: "top 90%",
+        toggleActions: "play none none none", // Không reverse để tránh mất dữ liệu khi cuộn ngược
       },
     });
     addTrigger(timelineTween);
@@ -989,6 +955,7 @@ function initRegisterAnimations() {
   });
 
   const faqItems = gsap.utils.toArray(".form-faq-item");
+  const faqContainer = document.querySelector(".faq-list");
   if (faqItems.length > 0) {
     const faqTween = gsap.from(faqItems, {
       opacity: 0,
@@ -997,9 +964,9 @@ function initRegisterAnimations() {
       duration: 0.6,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: faqItems[0],
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        trigger: faqContainer || faqItems[0],
+        start: "top 90%",
+        toggleActions: "play none none none",
       },
     });
     addTrigger(faqTween);
@@ -1075,8 +1042,8 @@ function initAboutAnimations() {
       ease: "power2.out",
       scrollTrigger: {
         trigger: paragraphs[0],
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        start: "top 90%",
+        toggleActions: "play none none none",
       },
     });
     addTrigger(paragraphTween);
@@ -1092,8 +1059,8 @@ function initAboutAnimations() {
       ease: "power2.out",
       scrollTrigger: {
         trigger: links[0],
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        start: "top 90%",
+        toggleActions: "play none none none",
       },
     });
     addTrigger(linkTween);
@@ -1120,16 +1087,68 @@ function initAboutAnimations() {
   }
 }
 
+const GOOGLE_FORM_ID = "1FAIpQLSelEKXbxQyEkCFM0C_A1wJV3Q32q4NW-JwBAFDEVWkZFXvDTQ";
+const ENTRY_IDS = {
+  fullName: "entry.1882665011",
+  phone: "entry.1650127445",
+  age: "entry.191697884",
+  email: "entry.118357787",
+  occupation: "entry.1439823306",
+  company: "entry.749570851",
+  domain: "entry.588232968",
+  source: "entry.11667112",
+};
+
 function initFormAndPopup() {
   const form = document.getElementById("registration-form");
   const popup = document.getElementById("thank-you-popup");
+  const submitBtn = document.getElementById("submit-btn");
+  const submitText = submitBtn ? submitBtn.querySelector(".submit-text") : null;
   const closeBtns = [document.getElementById("close-popup"), document.getElementById("btn-done")];
 
   if (form && popup) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      popup.classList.add("active");
-      form.reset();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+      }
+      if (submitText) {
+        submitText.textContent = "PROCESSING...";
+      }
+
+      const formData = new FormData(form);
+      const googleFormData = new FormData();
+
+      googleFormData.append(ENTRY_IDS.fullName, formData.get("fullName"));
+      googleFormData.append(ENTRY_IDS.phone, formData.get("phone"));
+      googleFormData.append(ENTRY_IDS.age, formData.get("age") || "");
+      googleFormData.append(ENTRY_IDS.email, formData.get("email"));
+      googleFormData.append(ENTRY_IDS.occupation, formData.get("occupation") || "");
+      googleFormData.append(ENTRY_IDS.company, formData.get("company") || "");
+      googleFormData.append(ENTRY_IDS.domain, window.location.origin);
+      googleFormData.append(ENTRY_IDS.source, "landing page (html)");
+
+      try {
+        await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
+          method: "POST",
+          mode: "no-cors",
+          body: googleFormData,
+        });
+
+        popup.classList.add("active");
+        form.reset();
+      } catch (error) {
+        console.error("Submit Google Form failed:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+        }
+        if (submitText) {
+          submitText.textContent = "SUBMIT REGISTER";
+        }
+      }
     });
   }
 
@@ -1260,17 +1279,36 @@ function initSectionDepthTransitions() {
 }
 
 function initRefreshHooks() {
-  if (!enhancedMotion) {
-    return;
+  const refresh = () => {
+    ScrollTrigger.refresh();
+  };
+
+  if (document.readyState === "complete") {
+    refresh();
+  } else {
+    window.addEventListener("load", refresh);
   }
 
-  window.addEventListener("load", () => {
-    ScrollTrigger.refresh();
-  });
-
+  // Fail-safe: Hiển thị tất cả phần tử nếu sau 3s vẫn bị kẹt
   setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 1000);
+    const selectors = [
+      '.speaker-timeline-item',
+      '.form-faq-item',
+      '.reveal-section',
+      '.speaker-name span',
+      '.speaker-title',
+      '.faq-title',
+      '.about-text',
+      '.about-contact-link'
+    ];
+    selectors.forEach(selector => {
+      gsap.to(selector, { opacity: 1, x: 0, y: 0, scale: 1, clipPath: "inset(0%)", duration: 0.5, overwrite: "auto" });
+    });
+    refresh();
+  }, 3000);
+
+  setTimeout(refresh, 500);
+  setTimeout(refresh, 1500);
 }
 
 window.addEventListener("load", () => {
