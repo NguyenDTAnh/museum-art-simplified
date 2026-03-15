@@ -7,8 +7,34 @@ const triggers = [];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 const saveData = navigator.connection && navigator.connection.saveData;
-const enhancedMotion = !prefersReducedMotion && isDesktop && !saveData;
+const enhancedMotion = true;
 if (enhancedMotion) document.documentElement.classList.add("gsap-active");
+
+let lenis;
+window.lenis = null;
+if (enhancedMotion) {
+  window.lenis = lenis = new Lenis({
+    autoRaf: false,
+    lerp: 0.1,
+    duration: 1.2,
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+  });
+
+  lenis.on('scroll', ScrollTrigger.update);
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  
+  window.addEventListener("resize", () => {
+    if (window.lenis) window.lenis.resize();
+  });
+  }
+  requestAnimationFrame(raf);
+}
+
 
 function splitWords(element) {
   if (!element || element.dataset.splitWordsDone === "1") {
@@ -49,10 +75,12 @@ function initSplashScreen() {
 
   // Khóa scroll khi preloader đang chạy
   document.body.style.overflow = 'hidden';
+  if (window.lenis) window.lenis.stop();
 
   if (!enhancedMotion) {
     splashScreen.style.display = "none";
     document.body.style.overflow = '';
+    if (window.lenis) { window.lenis.start(); window.lenis.resize(); ScrollTrigger.refresh(); }
     gsap.from(".hero-title", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" });
     gsap.from(".hero-description", { opacity: 0, y: 18, duration: 0.6, delay: 0.12, ease: "power2.out" });
     gsap.from(".hero-provider", { opacity: 0, y: 12, duration: 0.5, delay: 0.2, ease: "power2.out" });
@@ -155,6 +183,7 @@ function initSplashScreen() {
             onComplete: () => {
               splashScreen.style.display = "none";
               document.body.style.overflow = '';
+              if (window.lenis) { window.lenis.start(); window.lenis.resize(); ScrollTrigger.refresh(); }
             }
           })
           .from(".hero-title", { opacity: 0, y: 50, duration: 1, ease: "power3.out" }, "-=0.5")
@@ -498,18 +527,8 @@ function initFormatAnimations() {
 
   const registerBtn = document.querySelector(".format-register-btn");
   if (registerBtn) {
-    const buttonTween = gsap.from(registerBtn, {
-      scale: 0,
-      opacity: 0,
-      duration: 0.6,
-      ease: "back.out(1.2)",
-      scrollTrigger: {
-        trigger: registerBtn,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      },
-    });
-    addTrigger(buttonTween);
+    // Disabled animation to ensure button is visible
+    gsap.set(registerBtn, { opacity: 1, scale: 1 });
   }
 
   const speakerHeaderTitle = document.querySelector(".speaker-header-title");
@@ -1279,6 +1298,10 @@ function initRefreshHooks() {
 
   // Fail-safe: Hiển thị tất cả phần tử nếu sau 3s vẫn bị kẹt
   setTimeout(() => {
+    document.body.style.overflow = '';
+    if (window.lenis) { window.lenis.start(); window.lenis.resize(); ScrollTrigger.refresh(); }
+  }, 1000);
+  setTimeout(() => {
     const selectors = [
       '.speaker-timeline-item',
       '.form-faq-item',
@@ -1290,7 +1313,8 @@ function initRefreshHooks() {
       '.about-contact-link'
     ];
     selectors.forEach(selector => {
-      gsap.to(selector, { opacity: 1, x: 0, y: 0, scale: 1, clipPath: "inset(0%)", duration: 0.5, overwrite: "auto" });
+      // Bỏ clipPath: "inset(0%)" để không bị lỗi overflow:hidden ngầm làm mất các element absolute lồi ra ngoài (như nút Register Event)
+      gsap.to(selector, { opacity: 1, x: 0, y: 0, scale: 1, clearProps: "clipPath", duration: 0.5, overwrite: "auto" });
     });
     refresh();
   }, 3000);
