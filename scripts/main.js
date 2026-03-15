@@ -8,6 +8,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 const saveData = navigator.connection && navigator.connection.saveData;
 const enhancedMotion = !prefersReducedMotion && isDesktop && !saveData;
+if (enhancedMotion) document.documentElement.classList.add("gsap-active");
 
 function splitWords(element) {
   if (!element || element.dataset.splitWordsDone === "1") {
@@ -94,6 +95,7 @@ function initSplashScreen() {
     const shapes = [];
     let scrollLeftVal = 0;
     let autoMode = false;
+    let autoFrames = 0;
     const scrollSpeed = window.innerWidth < 700 ? 5 : 12;
 
     p.setup = () => {
@@ -117,11 +119,12 @@ function initSplashScreen() {
       }
 
       if (autoMode) {
+        autoFrames++;
         const rw = p.windowWidth < 700 ? 80 : 200;
         const rh = p.windowWidth < 700 ? 60 : 80;
 
-        const autoY = p.windowHeight / 2 + p.sin(p.frameCount * 0.05) * (p.windowHeight / 3);
-        const autoX = p.windowWidth / 2 + p.cos(p.frameCount * 0.02) * (p.windowWidth / 4);
+        const autoY = p.windowHeight / 2 + p.sin(autoFrames * 0.05) * (p.windowHeight / 3);
+        const autoX = p.windowWidth / 2 - p.cos(autoFrames * 0.02) * (p.windowWidth / 2);
 
         shapes.push(new ShapeRect(autoX, autoY, rw, rh));
         scrollLeftVal -= scrollSpeed;
@@ -243,21 +246,6 @@ function initBaseEffects() {
         end: "bottom top",
         scrub: true,
       },
-    });
-    addTrigger(tween);
-  });
-
-  gsap.utils.toArray(".reveal-section").forEach((section) => {
-    const tween = gsap.from(section, {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 95%", // Trigger sớm hơn để tránh bị kẹt ở cuối trang
-        toggleActions: "play none none none",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
     });
     addTrigger(tween);
   });

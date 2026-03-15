@@ -1,681 +1,1277 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Art.itecture Talk - Mockup Design</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art.itecture Talk - Mockup Design</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="./scripts/tailwind.config.js"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./scripts/tailwind.config.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+        <link rel="stylesheet" href="./css/styles.css" />
+    </head>
 
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-
-<body class="text-deep font-sans">
-
-    <!-- Preloader -->
-    <div id="splash-screen" class="fixed z-[9999] select-none w-full h-screen overflow-hidden touch-none pointer-events-none">
-        <div id="splash-p5-container" class="absolute inset-0 z-0 pointer-events-none w-full h-full"></div>
-        <div id="splash-scroll-wrapper" class="absolute top-0 left-0 w-[300vw] h-full z-10 flex items-center">
+    <body class="text-deep font-sans">
+        <!-- Preloader -->
+        <div
+            id="splash-screen"
+            class="fixed z-[9999] select-none w-full h-screen overflow-hidden touch-none pointer-events-none"
+        >
             <div
-                class="mask-container w-full h-full text-4xl sm:text-5xl md:text-[100px] font-heading font-bold tracking-widest text-ivory flex items-center leading-tight sm:leading-none whitespace-nowrap">
-                <div id="splash-text-part1"
-                    class="w-screen flex-shrink-0 flex justify-center text-center font-heading px-4">A new museum</div>
-                <div id="splash-text-part2"
-                    class="w-screen flex-shrink-0 flex justify-center text-center font-heading px-4">Without any walls
+                id="splash-p5-container"
+                class="absolute inset-0 z-0 pointer-events-none w-full h-full"
+            ></div>
+            <div
+                id="splash-scroll-wrapper"
+                class="absolute top-0 left-0 w-[300vw] h-full z-10 flex items-center"
+            >
+                <div
+                    class="mask-container w-full h-full text-4xl sm:text-5xl md:text-[100px] font-heading font-bold tracking-widest text-ivory flex items-center leading-tight sm:leading-none whitespace-nowrap"
+                >
+                    <div
+                        id="splash-text-part1"
+                        class="w-screen flex-shrink-0 flex justify-center text-center font-heading px-4"
+                    >
+                        A new museum
+                    </div>
+                    <div
+                        id="splash-text-part2"
+                        class="w-screen flex-shrink-0 flex justify-center text-center font-heading px-4"
+                    >
+                        Without any walls
+                    </div>
+                    <div
+                        id="splash-text-part3"
+                        class="w-screen flex-shrink-0 flex justify-center text-center font-heading px-4"
+                    >
+                        Without a collection
+                    </div>
                 </div>
-                <div id="splash-text-part3"
-                    class="w-screen flex-shrink-0 flex justify-center text-center font-heading px-4">Without a
-                    collection</div>
             </div>
         </div>
-    </div>
 
-    <!-- Header -->
-    <header
-        class="w-full flex justify-between items-center py-6 px-8 md:px-16 border-b border-line bg-white/90 backdrop-blur-md fixed top-0 z-50 transition-transform duration-300 transform translate-y-0"
-        id="main-header">
-        <div class="text-xl font-bold tracking-widest font-heading hover:text-lacquer cursor-pointer transition">
-            Art.itecture Talk</div>
-        <nav class="hidden md:flex gap-12 text-xs uppercase tracking-widest font-semibold">
-            <a href="#talk" class="hover:text-lacquer transition border-b border-black pb-1">TALK</a>
-            <a href="#others" class="hover:text-lacquer transition border-b border-black pb-1">OTHERS</a>
-            <a href="#register" class="hover:text-lacquer transition border-b border-black pb-1">REGISTER</a>
-        </nav>
-    </header>
+        <!-- Header -->
+        <header
+            class="w-full flex justify-between items-center py-6 px-8 md:px-16 border-b border-line bg-white/90 backdrop-blur-md fixed top-0 z-50 transition-transform duration-300 transform translate-y-0"
+            id="main-header"
+        >
+            <div
+                class="text-xl font-bold tracking-widest font-heading hover:text-lacquer cursor-pointer transition"
+            >
+                Art.itecture Talk
+            </div>
+            <nav
+                class="hidden md:flex gap-12 text-xs uppercase tracking-widest font-semibold"
+            >
+                <a
+                    href="#talk"
+                    class="hover:text-lacquer transition border-b border-black pb-1"
+                    >TALK</a
+                >
+                <a
+                    href="#others"
+                    class="hover:text-lacquer transition border-b border-black pb-1"
+                    >OTHERS</a
+                >
+                <a
+                    href="#register"
+                    class="hover:text-lacquer transition border-b border-black pb-1"
+                    >REGISTER</a
+                >
+            </nav>
+        </header>
 
-    <main id="smooth-wrapper" class="pt-24 mt-[1px]">
-        <div id="smooth-content">
-
-            <!-- Hero Intro -->
-            <section
-                class="flex flex-col items-center pt-24 pb-16 text-center border-b border-line relative overflow-hidden section-hero-wrapper">
-                <h1
-                    class="font-heading text-6xl md:text-8xl lg:text-[120px] mb-8 leading-none relative z-10 hero-title">
-                    Art<span class="text-3xl md:text-5xl lg:text-[70px] align-baseline">.</span>itecture Talk
-                </h1>
-                <p
-                    class="max-w-3xl text-sm md:text-base text-deep leading-relaxed mb-12 relative z-10 hero-description">
-                    The project was initiated in response to challenges that architecture alone can no longer<br
-                        class="hidden md:block" />
-                    sufficiently resolve, providing architects with a space to reconsider their professional<br
-                        class="hidden md:block" />
-                    questions through artistic and interdisciplinary approaches.
-                </p>
-                <div class="flex items-center gap-4 text-xs relative z-10 hero-provider">
-                    <span>Một dự án của</span>
-                    <img src="./images/dmd_logo.png" alt="DMD logo" class="h-8 object-contain" />
-                </div>
-
-                <div
-                    class="scaling-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-lacquer/50 mix-blend-multiply z-0 pointer-events-none">
-                </div>
-                <div
-                    class="scaling-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-lacquer/30 mix-blend-multiply z-0 pointer-events-none delay-100">
-                </div>
-            </section>
-
-            <!-- 3 Columns Idea -->
-            <section
-                class="grid grid-cols-1 md:grid-cols-3 border-b border-line text-center divide-y md:divide-y-0 md:divide-x divide-black content-vis-auto reveal-section">
-                <div class="flex flex-col items-center py-16 px-8 img-zoom-wrapper">
-                    <img src="./images/project.avif" alt="Bust statue"
-                        class="h-40 rounded-full w-40 object-cover mb-8 grayscale hover:grayscale-0 transition duration-500" />
-                    <h3 class="font-heading text-lg">Question the norms</h3>
-                </div>
-                <div class="flex flex-col items-center py-16 px-8 img-zoom-wrapper">
-                    <img src="./images/project.avif" alt="Bust statue"
-                        class="h-40 rounded-full w-40 object-cover mb-8 grayscale hover:grayscale-0 transition duration-500" />
-                    <h3 class="font-heading text-lg">Connecting the dots</h3>
-                </div>
-                <div class="flex flex-col items-center py-16 px-8 img-zoom-wrapper">
-                    <img src="./images/project.avif" alt="Bust statue"
-                        class="h-40 rounded-full w-40 object-cover mb-8 grayscale hover:grayscale-0 transition duration-500" />
-                    <h3 class="font-heading text-lg">Seek meaning before method</h3>
-                </div>
-            </section>
-
-            <!-- SECTION HEADER: TALK -->
-            <section
-                class="border-b border-line px-8 md:px-16 py-10 flex justify-between items-center bg-white reveal-section theme-header-section"
-                id="talk">
-                <h2 class="font-heading text-6xl md:text-8xl uppercase header-anim theme-header-title">TALK</h2>
-                <div class="w-24 md:w-32 h-[1px] bg-black line-expand"></div>
-            </section>
-
-            <!-- Section 02 - Building Emotion -->
-            <section class="border-b border-line content-vis-auto reveal-section theme-content-section">
-                <div class="grid grid-cols-1 md:grid-cols-12">
+        <main id="smooth-wrapper" class="pt-24 mt-[1px]">
+            <div id="smooth-content">
+                <!-- Hero Intro -->
+                <section
+                    class="flex flex-col items-center pt-24 pb-16 text-center border-b border-line relative overflow-hidden section-hero-wrapper"
+                >
+                    <h1
+                        class="font-heading text-6xl md:text-8xl lg:text-[120px] mb-8 leading-none relative z-10 hero-title"
+                    >
+                        Art<span
+                            class="text-3xl md:text-5xl lg:text-[70px] align-baseline"
+                            >.</span
+                        >itecture Talk
+                    </h1>
+                    <p
+                        class="max-w-3xl text-sm md:text-base text-deep leading-relaxed mb-12 relative z-10 hero-description"
+                    >
+                        The project was initiated in response to challenges that
+                        architecture alone can no longer<br
+                            class="hidden md:block"
+                        />
+                        sufficiently resolve, providing architects with a space
+                        to reconsider their professional<br
+                            class="hidden md:block"
+                        />
+                        questions through artistic and interdisciplinary
+                        approaches.
+                    </p>
                     <div
-                        class="md:col-span-8 p-8 md:p-16 border-b md:border-b-0 md:border-r border-line flex flex-col justify-center">
-                        <div class="text-lacquer font-bold text-2xl italic font-heading mb-2 theme-number">02.</div>
-                        <h2 class="text-lacquer font-heading text-4xl md:text-5xl uppercase mb-6 tracking-wide theme-title">BUILDING
-                            EMOTION</h2>
-                        <h3
-                            class="font-heading text-xl italic mb-12 text-gray-sub border-b border-black pb-4 self-start">
-                            How Music and Architecture<br />Shape Human Experience</h3>
+                        class="flex items-center gap-4 text-xs relative z-10 hero-provider"
+                    >
+                        <span>Một dự án của</span>
+                        <img
+                            src="./images/dmd_logo.png"
+                            alt="DMD logo"
+                            class="h-8 object-contain"
+                        />
+                    </div>
 
-                        <div class="text-sm leading-relaxed max-w-xl text-deep space-y-6 md:pl-8 theme-paragraphs">
-                            <p>
-                                "Inui Architects" is a Tokyo-based architectural firm that designs a wide range of
-                                genres, including public buildings such as stations and schools, welfare facilities,
-                                housing, interiors, and public plazas. In recent years, the firm has recognized the
-                                importance of "commons" (shared assets) and the "act of commoning" in society and
-                                explores architectural forms that nurture such commons. We also explore the various
-                                possibilities of the commons, drawing on our experience in "Learning from Little Spaces"
-                                research.
+                    <div
+                        class="scaling-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-lacquer/50 mix-blend-multiply z-0 pointer-events-none"
+                    ></div>
+                    <div
+                        class="scaling-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-lacquer/30 mix-blend-multiply z-0 pointer-events-none delay-100"
+                    ></div>
+                </section>
+
+                <!-- 3 Columns Idea -->
+                <section
+                    class="grid grid-cols-1 md:grid-cols-3 border-b border-line text-center divide-y md:divide-y-0 md:divide-x divide-black content-vis-auto reveal-section"
+                >
+                    <div
+                        class="flex flex-col items-center py-16 px-8 img-zoom-wrapper"
+                    >
+                        <img
+                            src="./images/project.avif"
+                            alt="Bust statue"
+                            class="h-40 rounded-full w-40 object-cover mb-8 grayscale hover:grayscale-0 transition duration-500"
+                        />
+                        <h3 class="font-heading text-lg">Question the norms</h3>
+                    </div>
+                    <div
+                        class="flex flex-col items-center py-16 px-8 img-zoom-wrapper"
+                    >
+                        <img
+                            src="./images/project.avif"
+                            alt="Bust statue"
+                            class="h-40 rounded-full w-40 object-cover mb-8 grayscale hover:grayscale-0 transition duration-500"
+                        />
+                        <h3 class="font-heading text-lg">
+                            Connecting the dots
+                        </h3>
+                    </div>
+                    <div
+                        class="flex flex-col items-center py-16 px-8 img-zoom-wrapper"
+                    >
+                        <img
+                            src="./images/project.avif"
+                            alt="Bust statue"
+                            class="h-40 rounded-full w-40 object-cover mb-8 grayscale hover:grayscale-0 transition duration-500"
+                        />
+                        <h3 class="font-heading text-lg">
+                            Seek meaning before method
+                        </h3>
+                    </div>
+                </section>
+
+                <!-- SECTION HEADER: TALK -->
+                <section
+                    class="border-b border-line px-8 md:px-16 py-10 flex justify-between items-center bg-white reveal-section theme-header-section"
+                    id="talk"
+                >
+                    <h2
+                        class="font-heading text-6xl md:text-8xl uppercase header-anim theme-header-title"
+                    >
+                        TALK
+                    </h2>
+                    <div
+                        class="w-24 md:w-32 h-[1px] bg-black line-expand"
+                    ></div>
+                </section>
+
+                <!-- Section 02 - Building Emotion -->
+                <section
+                    class="border-b border-line content-vis-auto reveal-section theme-content-section"
+                >
+                    <div class="grid grid-cols-1 md:grid-cols-12">
+                        <div
+                            class="md:col-span-8 p-8 md:p-16 border-b md:border-b-0 md:border-r border-line flex flex-col justify-center"
+                        >
+                            <div
+                                class="text-lacquer font-bold text-2xl italic font-heading mb-2 theme-number"
+                            >
+                                02.
+                            </div>
+                            <h2
+                                class="text-lacquer font-heading text-4xl md:text-5xl uppercase mb-6 tracking-wide theme-title"
+                            >
+                                BUILDING EMOTION
+                            </h2>
+                            <h3
+                                class="font-heading text-xl italic mb-12 text-gray-sub border-b border-black pb-4 self-start"
+                            >
+                                How Music and Architecture<br />Shape Human
+                                Experience
+                            </h3>
+
+                            <div
+                                class="text-sm leading-relaxed max-w-xl text-deep space-y-6 md:pl-8 theme-paragraphs"
+                            >
+                                <p>
+                                    "Inui Architects" is a Tokyo-based
+                                    architectural firm that designs a wide range
+                                    of genres, including public buildings such
+                                    as stations and schools, welfare facilities,
+                                    housing, interiors, and public plazas. In
+                                    recent years, the firm has recognized the
+                                    importance of "commons" (shared assets) and
+                                    the "act of commoning" in society and
+                                    explores architectural forms that nurture
+                                    such commons. We also explore the various
+                                    possibilities of the commons, drawing on our
+                                    experience in "Learning from Little Spaces"
+                                    research.
+                                </p>
+                                <p>
+                                    For projects of a more public nature, we
+                                    emphasize the importance of local research
+                                    and hearings. We place importance on
+                                    accurately grasping the social significance
+                                    and enhancing projects while conducting
+                                    research from various perspectives. For
+                                    welfare-related projects in particular, we
+                                    consider not only planning to improve care
+                                    but also the impact of the project on
+                                    community development.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="md:col-span-4 p-8 md:p-16 flex items-center justify-center relative overflow-hidden"
+                        >
+                            <div
+                                class="parallax-wrapper w-full h-[300px] md:h-full max-h-[500px] theme-image-wrapper"
+                            >
+                                <img
+                                    src="./images/banner_1.jpg"
+                                    alt="Talk event"
+                                    class="parallax-img"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Subtalk Image Spread -->
+                <section
+                    class="border-b border-line reveal-section format-section relative !overflow-visible"
+                    style="z-index: 90"
+                >
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black h-full"
+                        style="overflow: visible !important"
+                    >
+                        <div
+                            class="p-8 md:p-16 flex items-center justify-center text-center"
+                        >
+                            <h3
+                                class="font-heading text-2xl md:text-3xl text-lacquer italic leading-tight hover:scale-105 transition-transform duration-300 format-left-text"
+                            >
+                                An original format<br />
+                                that integrates talk<br />
+                                and performance.
+                            </h3>
+                        </div>
+                        <div
+                            class="h-64 md:h-auto img-zoom-wrapper min-h-[300px] format-center-image"
+                        >
+                            <img
+                                src="./images/banner_2.jpg"
+                                alt="Event stage"
+                                class="parallax-img grayscale hover:grayscale-0 transition duration-500"
+                            />
+                        </div>
+                        <div
+                            class="p-8 md:p-16 flex flex-col items-center md:items-end justify-center text-center md:text-right relative group !overflow-visible"
+                            style="z-index: 50"
+                        >
+                            <h3
+                                class="font-heading text-2xl md:text-3xl text-lacquer italic leading-tight group-hover:scale-105 transition-transform duration-300 format-right-text"
+                            >
+                                An unconventional<br />
+                                voice: a music director<br />
+                                reflecting on architecture.
+                            </h3>
+                            <div
+                                class="md:absolute md:bottom-[-1.5rem] md:right-16 mt-10 md:mt-0"
+                                style="z-index: 60"
+                            >
+                                <a
+                                    href="#register"
+                                    class="bg-lacquer text-white font-sans text-sm px-10 py-4 hover:bg-black transition underline underline-offset-4 font-medium format-register-btn whitespace-nowrap block"
+                                >
+                                    Register event
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION HEADER: SPEAKER -->
+                <section
+                    class="border-b border-line px-8 md:px-16 py-10 flex flex-row-reverse justify-between items-center bg-white reveal-section speaker-header-section"
+                    id="speaker"
+                    style="scroll-margin-top: 100px; position: relative; z-index: 10;"
+                >
+                    <h2
+                        class="font-heading text-6xl md:text-8xl uppercase header-anim speaker-header-title"
+                    >
+                        SPEAKER
+                    </h2>
+                    <div
+                        class="w-24 md:w-32 h-[1px] bg-black line-expand"
+                    ></div>
+                </section>
+
+                <!-- Speaker Info Layout -->
+                <section
+                    class="border-b border-line content-vis-auto reveal-section speaker-section"
+                >
+                    <div class="grid grid-cols-1 md:grid-cols-12">
+                        <div
+                            class="md:col-span-4 p-8 md:p-16 flex items-center justify-center border-b md:border-b-0 md:border-r border-line img-zoom-wrapper"
+                        >
+                            <img
+                                src="./images/banner_3.jpg"
+                                alt="Olivier Ochanine"
+                                class="speaker-img speaker-avatar-reveal w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-lg"
+                            />
+                        </div>
+                        <div
+                            class="md:col-span-8 p-8 md:p-16 flex flex-col justify-center"
+                        >
+                            <h2
+                                class="font-heading text-4xl md:text-5xl text-lacquer mb-2 speaker-name"
+                            >
+                                Olivier Ochanine
+                            </h2>
+                            <p
+                                class="font-heading text-base mb-12 border-b border-black pb-4 self-start speaker-title"
+                            >
+                                Music Director, Sun Symphony Orchestra
                             </p>
-                            <p>
-                                For projects of a more public nature, we emphasize the importance of local research and
-                                hearings. We place importance on accurately grasping the social significance and
-                                enhancing projects while conducting research from various perspectives. For
-                                welfare-related projects in particular, we consider not only planning to improve care
-                                but also the impact of the project on community development.
+
+                            <div
+                                class="space-y-4 text-sm w-full max-w-2xl reveal-list"
+                            >
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >1969</span
+                                    >
+                                    <span class="text-deep"
+                                        >Born in Osaka Prefecture</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >1992</span
+                                    >
+                                    <span class="text-deep"
+                                        >Graduated from the Department of
+                                        Architecture at Tokyo University of the
+                                        Arts</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >1996</span
+                                    >
+                                    <span class="text-deep"
+                                        >Graduated from Yale University Graduate
+                                        School of Architecture</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >1996-2000:</span
+                                    >
+                                    <span class="text-deep"
+                                        >Worked at Jun Aoki Architectural
+                                        Planning Office</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >2000:</span
+                                    >
+                                    <span class="text-deep"
+                                        >Established Kumiko Inui Architectural
+                                        Design Office</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >2000-2001:</span
+                                    >
+                                    <span class="text-deep"
+                                        >Teaching Associates at Tokyo University
+                                        of Fine Arts.</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >2011-2016:</span
+                                    >
+                                    <span class="text-deep"
+                                        >Associate Professor, Department of
+                                        Architecture, Faculty of Fine Arts,
+                                        Tokyo University of the Arts</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col sm:flex-row gap-2 sm:gap-8 pt-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item"
+                                >
+                                    <span
+                                        class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year"
+                                        >2016 to now:</span
+                                    >
+                                    <span class="text-deep"
+                                        >Professor, Graduate School of Urban
+                                        Innovation, Yokohama National
+                                        University, Architecture and Urban
+                                        Design Course (Y-GSA).</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Highlighted Projects -->
+                <section
+                    class="border-b border-line text-center py-4 bg-[#F9F9F9] reveal-section projects-header-section"
+                >
+                    <h4 class="font-heading text-lg projects-title">
+                        Highlighted Projects
+                    </h4>
+                </section>
+
+                <!-- Projects Slider -->
+                <section
+                    class="border-b border-line text-center relative content-vis-auto reveal-section group/slider projects-slider-section"
+                >
+                    <button
+                        class="slider-btn-prev absolute left-4 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:flex items-center justify-center hover:scale-110 transition cursor-pointer z-10 bg-white/50 backdrop-blur-sm rounded-full w-12 h-12 shadow opacity-0 group-hover/slider:opacity-100 duration-300"
+                    >
+                        <i
+                            data-lucide="chevron-left"
+                            class="w-8 h-8 font-thin"
+                        ></i>
+                    </button>
+                    <button
+                        class="slider-btn-next absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:flex items-center justify-center hover:scale-110 transition cursor-pointer z-10 bg-white/50 backdrop-blur-sm rounded-full w-12 h-12 shadow opacity-0 group-hover/slider:opacity-100 duration-300"
+                    >
+                        <i
+                            data-lucide="chevron-right"
+                            class="w-8 h-8 font-thin"
+                        ></i>
+                    </button>
+
+                    <div
+                        class="projects-slider flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar divide-x divide-black"
+                    >
+                        <div
+                            class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start"
+                        >
+                            <img
+                                src="./images/project.avif"
+                                alt="Project"
+                                class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md"
+                            />
+                            <p
+                                class="font-heading text-sm text-deep group-hover:text-lacquer transition"
+                            >
+                                Kyoto City University of Arts<br />and Kyoto
+                                City Senior High School of Art
+                            </p>
+                        </div>
+                        <div
+                            class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start"
+                        >
+                            <img
+                                src="./images/project.avif"
+                                alt="Project"
+                                class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md"
+                            />
+                            <p
+                                class="font-heading text-sm text-deep group-hover:text-lacquer transition"
+                            >
+                                Nagasaki Prefectural Art Museum<br />Connecting
+                                People & Culture
+                            </p>
+                        </div>
+                        <div
+                            class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start"
+                        >
+                            <img
+                                src="./images/project.avif"
+                                alt="Project"
+                                class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md"
+                            />
+                            <p
+                                class="font-heading text-sm text-deep group-hover:text-lacquer transition"
+                            >
+                                Shonan Christ Church<br />A seamless space of
+                                light
+                            </p>
+                        </div>
+                        <div
+                            class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start border-l border-black md:border-l-0"
+                        >
+                            <img
+                                src="./images/project.avif"
+                                alt="Project"
+                                class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md"
+                            />
+                            <p
+                                class="font-heading text-sm text-deep group-hover:text-lacquer transition"
+                            >
+                                Aomori Museum of Art<br />Underground
+                                architecture
+                            </p>
+                        </div>
+                        <div
+                            class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start border-l border-black md:border-l-0"
+                        >
+                            <img
+                                src="./images/project.avif"
+                                alt="Project"
+                                class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md"
+                            />
+                            <p
+                                class="font-heading text-sm text-deep group-hover:text-lacquer transition"
+                            >
+                                Oita Prefectural Art Museum<br />Open and
+                                inviting gallery
                             </p>
                         </div>
                     </div>
-                    <div class="md:col-span-4 p-8 md:p-16 flex items-center justify-center relative overflow-hidden">
-                        <div class="parallax-wrapper w-full h-[300px] md:h-full max-h-[500px] theme-image-wrapper">
-                            <img src="./images/banner_1.jpg" alt="Talk event" class="parallax-img" />
+                </section>
+
+                <!-- Highlight Context -->
+                <section
+                    class="border-b border-line content-vis-auto reveal-section projects-context-section"
+                    id="others"
+                    style="scroll-margin-top: 100px; position: relative; z-index: 10;"
+                >
+                    <div class="grid grid-cols-1 md:grid-cols-12">
+                        <div
+                            class="md:col-span-8 p-8 md:p-16 border-b md:border-b-0 md:border-r border-line flex flex-col justify-center"
+                        >
+                            <div
+                                class="text-sm leading-relaxed max-w-2xl text-deep mx-auto space-y-6 projects-context-text"
+                            >
+                                <p>
+                                    "Inui Architects" is a Tokyo-based
+                                    architectural firm that designs a wide range
+                                    of genres, including public buildings such
+                                    as stations and schools, welfare facilities,
+                                    housing, interiors, and public plazas. In
+                                    recent years, the firm has recognized the
+                                    importance of "commons" (shared assets) and
+                                    the "act of commoning" in society and
+                                    explores architectural forms that nurture
+                                    such commons. We also explore the various
+                                    possibilities of the commons, drawing on our
+                                    experience in "Learning from Little Spaces"
+                                    research.
+                                </p>
+                                <p>
+                                    For projects of a more public nature, we
+                                    emphasize the importance of local research
+                                    and hearings. We place importance on
+                                    accurately grasping the social significance
+                                    and enhancing projects while conducting
+                                    research from various perspectives. For
+                                    welfare-related projects in particular, we
+                                    consider not only planning to improve care
+                                    but also the impact of the project on
+                                    community development.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="md:col-span-4 p-8 md:p-16 flex items-center justify-center relative overflow-hidden"
+                        >
+                            <div
+                                class="parallax-wrapper w-full h-[300px] md:h-full max-h-[400px] projects-context-image"
+                            >
+                                <img
+                                    src="./images/banner_4.jpg"
+                                    alt="Talk event"
+                                    class="parallax-img"
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Subtalk Image Spread -->
-            <section class="border-b border-line reveal-section format-section relative !overflow-visible" style="z-index: 40;">
-                <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black h-full" style="overflow: visible !important;">
-                    <div class="p-8 md:p-16 flex items-center justify-center text-center">
-                        <h3
-                            class="font-heading text-2xl md:text-3xl text-lacquer italic leading-tight hover:scale-105 transition-transform duration-300 format-left-text">
-                            An original format<br>
-                            that integrates talk<br>
-                            and performance.
-                        </h3>
+                <!-- SECTION HEADER: EVENTS -->
+                <section
+                    class="border-b border-line px-8 md:px-16 py-10 flex justify-between items-center bg-white reveal-section events-header-section"
+                >
+                    <h2
+                        class="font-heading text-6xl md:text-8xl uppercase header-anim events-header-title"
+                    >
+                        EVENTS
+                    </h2>
+                    <div
+                        class="w-24 md:w-32 h-[1px] bg-black line-expand"
+                    ></div>
+                </section>
+
+                <!-- Events Details -->
+                <section
+                    class="border-b border-line p-8 md:p-16 text-center md:text-left content-vis-auto reveal-section event-details-section"
+                >
+                    <div
+                        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12"
+                    >
+                        <div class="md:col-span-5 flex flex-col justify-center">
+                            <h2
+                                class="font-heading text-4xl md:text-5xl text-lacquer mb-2 max-w-xs uppercase leading-tight event-date"
+                            >
+                                04, tháng 04, 2026<br />
+                                08:30 - 11:30
+                            </h2>
+                        </div>
+                        <div
+                            class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12 text-sm text-left align-top"
+                        >
+                            <div class="space-y-6">
+                                <div class="flex gap-4 group event-detail-row">
+                                    <span
+                                        class="text-lacquer font-semibold w-20 flex-shrink-0 event-detail-label"
+                                        >Location</span
+                                    >
+                                    <span
+                                        class="font-medium text-deep group-hover:text-lacquer transition"
+                                        >Grand Concert Hall<br />Vietnam
+                                        National Academy of Music<br />77 Hao
+                                        Nam, Cho Dua, Dong Da, Hanoi</span
+                                    >
+                                </div>
+                                <div class="flex gap-4 group event-detail-row">
+                                    <span
+                                        class="text-lacquer font-semibold w-20 flex-shrink-0 event-detail-label"
+                                        >Format</span
+                                    >
+                                    <span
+                                        class="font-medium text-deep group-hover:text-lacquer transition"
+                                        >Offline</span
+                                    >
+                                </div>
+                                <div class="flex gap-4 group event-detail-row">
+                                    <span
+                                        class="text-lacquer font-semibold w-20 flex-shrink-0 event-detail-label"
+                                        >Language</span
+                                    >
+                                    <span
+                                        class="font-medium text-deep group-hover:text-lacquer transition"
+                                        >English with Vietnamese subtitle</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="space-y-6">
+                                <div class="flex gap-4 group event-detail-row">
+                                    <span
+                                        class="text-lacquer font-semibold w-24 flex-shrink-0 event-detail-label"
+                                        >Fee</span
+                                    >
+                                    <span
+                                        class="font-medium text-deep group-hover:text-lacquer transition"
+                                        >Free to the public</span
+                                    >
+                                </div>
+                                <div class="flex gap-4 group event-detail-row">
+                                    <span
+                                        class="text-lacquer font-semibold w-24 flex-shrink-0 event-detail-label"
+                                        >For</span
+                                    >
+                                    <span
+                                        class="font-medium text-deep group-hover:text-lacquer transition"
+                                        >Designed primarily for architects, and
+                                        open to other creative practitioners
+                                        interested in interdisciplinary
+                                        thinking.</span
+                                    >
+                                </div>
+                                <div class="flex gap-4 group event-detail-row">
+                                    <span
+                                        class="text-lacquer font-semibold w-24 flex-shrink-0 event-detail-label"
+                                        >Available Slots</span
+                                    >
+                                    <span
+                                        class="font-medium text-deep group-hover:text-lacquer transition"
+                                        >500</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="h-64 md:h-auto img-zoom-wrapper min-h-[300px] format-center-image">
-                        <img src="./images/banner_2.jpg" alt="Event stage"
-                            class="parallax-img grayscale hover:grayscale-0 transition duration-500" />
-                    </div>
-                    <div class="p-8 md:p-16 flex flex-col items-center md:items-end justify-center text-center md:text-right relative group !overflow-visible" style="z-index: 50;">
-                        <h3
-                            class="font-heading text-2xl md:text-3xl text-lacquer italic leading-tight group-hover:scale-105 transition-transform duration-300 format-right-text">
-                            An unconventional<br>
-                            voice: a music director<br>
-                            reflecting on architecture.
-                        </h3>
-                        <div class="md:absolute md:bottom-[-1.5rem] md:right-16 mt-10 md:mt-0" style="z-index: 60;">
-                            <a href="#register"
-                                class="bg-lacquer text-white font-sans text-sm px-10 py-4 hover:bg-black transition underline underline-offset-4 font-medium format-register-btn whitespace-nowrap block">
-                                Register event
+                </section>
+
+                <!-- Our Series Carousel Parallax -->
+                <section
+                    class="border-b border-line py-16 px-8 flex flex-col items-center bg-[#FDFDFD] content-vis-auto reveal-section series-section"
+                >
+                    <h2
+                        class="font-heading text-4xl md:text-5xl mb-6 header-anim series-title"
+                    >
+                        Our Series
+                    </h2>
+                    <p
+                        class="text-center text-sm max-w-2xl mb-12 text-deep leading-relaxed series-description"
+                    >
+                        TOTO Architect Talk, which was launched in 2017,
+                        successfully coordinated 06 talks from renowned Japanese
+                        architects: Shigeru Ban, Hiroshi Naito, Takahru Tezuka,
+                        and Akihisa Hirata, Yoshiharu Tsukamoto, Junya Ishigami.
+                    </p>
+
+                    <div
+                        class="relative w-full max-w-5xl group cursor-pointer img-zoom-wrapper"
+                    >
+                        <button
+                            class="absolute -left-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10"
+                        >
+                            <i
+                                data-lucide="chevron-left"
+                                class="w-12 h-12 font-thin"
+                            ></i>
+                        </button>
+                        <button
+                            class="absolute -right-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10"
+                        >
+                            <i
+                                data-lucide="chevron-right"
+                                class="w-12 h-12 font-thin"
+                            ></i>
+                        </button>
+                        <div
+                            class="aspect-video w-full bg-gray-200 overflow-hidden relative"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                                alt="Event presentation"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"
+                            />
+                        </div>
+
+                        <div class="flex justify-center mt-8">
+                            <a
+                                href="#"
+                                class="bg-lacquer text-white font-sans text-sm px-8 py-3 uppercase tracking-wider hover:bg-black transition shadow-lg shrink-0 w-[80%] md:w-auto text-center"
+                            >
+                                Art.itecture #01
                             </a>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- SECTION HEADER: SPEAKER -->
-            <section
-                class="border-b border-line px-8 md:px-16 py-10 flex flex-row-reverse justify-between items-center bg-white reveal-section speaker-header-section"
-                id="speaker" style="scroll-margin-top: 100px;">
-                <h2 class="font-heading text-6xl md:text-8xl uppercase header-anim speaker-header-title">SPEAKER</h2>
-                <div class="w-24 md:w-32 h-[1px] bg-black line-expand"></div>
-            </section>
-
-            <!-- Speaker Info Layout -->
-            <section class="border-b border-line content-vis-auto reveal-section speaker-section">
-                <div class="grid grid-cols-1 md:grid-cols-12">
+                <!-- SECTION HEADER: REGISTER -->
+                <section
+                    class="border-b border-line px-8 md:px-16 py-10 flex justify-between items-center bg-white reveal-section register-header-section"
+                    id="register"
+                    style="scroll-margin-top: 100px; position: relative; z-index: 10;"
+                >
+                    <h2
+                        class="font-heading text-6xl md:text-8xl uppercase header-anim register-header-title"
+                    >
+                        REGISTER
+                    </h2>
                     <div
-                        class="md:col-span-4 p-8 md:p-16 flex items-center justify-center border-b md:border-b-0 md:border-r border-line img-zoom-wrapper">
-                        <img src="./images/banner_3.jpg" alt="Olivier Ochanine"
-                            class="speaker-img speaker-avatar-reveal w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-lg" />
-                    </div>
-                    <div class="md:col-span-8 p-8 md:p-16 flex flex-col justify-center">
-                        <h2 class="font-heading text-4xl md:text-5xl text-lacquer mb-2 speaker-name">Olivier Ochanine</h2>
-                        <p class="font-heading text-base mb-12 border-b border-black pb-4 self-start speaker-title">Music Director,
-                            Sun Symphony Orchestra</p>
+                        class="w-24 md:w-32 h-[1px] bg-black line-expand"
+                    ></div>
+                </section>
 
-                        <div class="space-y-4 text-sm w-full max-w-2xl reveal-list">
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">1969</span>
-                                <span class="text-deep">Born in Osaka Prefecture</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">1992</span>
-                                <span class="text-deep">Graduated from the Department of Architecture at Tokyo
-                                    University of the Arts</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">1996</span>
-                                <span class="text-deep">Graduated from Yale University Graduate School of
-                                    Architecture</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">1996-2000:</span>
-                                <span class="text-deep">Worked at Jun Aoki Architectural Planning Office</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">2000:</span>
-                                <span class="text-deep">Established Kumiko Inui Architectural Design Office</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">2000-2001:</span>
-                                <span class="text-deep">Teaching Associates at Tokyo University of Fine Arts.</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 border-b border-gray-200 pb-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">2011-2016:</span>
-                                <span class="text-deep">Associate Professor, Department of Architecture, Faculty of Fine
-                                    Arts, Tokyo University of the Arts</span>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row gap-2 sm:gap-8 pt-2 hover:bg-gray-50 transition p-2 -mx-2 rounded speaker-timeline-item">
-                                <span class="text-lacquer w-24 flex-shrink-0 font-medium speaker-year">2016 to now:</span>
-                                <span class="text-deep">Professor, Graduate School of Urban Innovation, Yokohama
-                                    National University, Architecture and Urban Design Course (Y-GSA).</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Highlighted Projects -->
-            <section class="border-b border-line text-center py-4 bg-[#F9F9F9] reveal-section projects-header-section">
-                <h4 class="font-heading text-lg projects-title">Highlighted Projects</h4>
-            </section>
-
-            <!-- Projects Slider -->
-            <section class="border-b border-line text-center relative content-vis-auto reveal-section group/slider projects-slider-section">
-                <button
-                    class="slider-btn-prev absolute left-4 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:flex items-center justify-center hover:scale-110 transition cursor-pointer z-10 bg-white/50 backdrop-blur-sm rounded-full w-12 h-12 shadow opacity-0 group-hover/slider:opacity-100 duration-300">
-                    <i data-lucide="chevron-left" class="w-8 h-8 font-thin"></i>
-                </button>
-                <button
-                    class="slider-btn-next absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:flex items-center justify-center hover:scale-110 transition cursor-pointer z-10 bg-white/50 backdrop-blur-sm rounded-full w-12 h-12 shadow opacity-0 group-hover/slider:opacity-100 duration-300">
-                    <i data-lucide="chevron-right" class="w-8 h-8 font-thin"></i>
-                </button>
-
-                <div
-                    class="projects-slider flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar divide-x divide-black">
+                <!-- Form & FAQ -->
+                <section
+                    class="border-b border-line content-vis-auto reveal-section register-section"
+                >
                     <div
-                        class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start">
-                        <img src="./images/project.avif" alt="Project"
-                            class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md" />
-                        <p class="font-heading text-sm text-deep group-hover:text-lacquer transition">Kyoto City
-                            University
-                            of Arts<br>and Kyoto City Senior High School of Art</p>
-                    </div>
-                    <div
-                        class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start">
-                        <img src="./images/project.avif" alt="Project"
-                            class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md" />
-                        <p class="font-heading text-sm text-deep group-hover:text-lacquer transition">Nagasaki
-                            Prefectural
-                            Art Museum<br>Connecting People & Culture</p>
-                    </div>
-                    <div
-                        class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start">
-                        <img src="./images/project.avif" alt="Project"
-                            class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md" />
-                        <p class="font-heading text-sm text-deep group-hover:text-lacquer transition">Shonan Christ
-                            Church<br>A seamless space of light</p>
-                    </div>
-                    <div
-                        class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start border-l border-black md:border-l-0">
-                        <img src="./images/project.avif" alt="Project"
-                            class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md" />
-                        <p class="font-heading text-sm text-deep group-hover:text-lacquer transition">Aomori Museum of
-                            Art<br>Underground architecture</p>
-                    </div>
-                    <div
-                        class="flex-none w-full md:w-1/3 flex flex-col items-center py-16 px-12 group cursor-pointer img-zoom-wrapper snap-start border-l border-black md:border-l-0">
-                        <img src="./images/project.avif" alt="Project"
-                            class="h-40 w-40 object-cover mb-4 rounded-full grayscale group-hover:grayscale-0 transition duration-500 shadow-md" />
-                        <p class="font-heading text-sm text-deep group-hover:text-lacquer transition">Oita Prefectural
-                            Art Museum<br>Open and inviting gallery</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Highlight Context -->
-            <section class="border-b border-line content-vis-auto reveal-section projects-context-section" id="others"
-                style="scroll-margin-top: 100px;">
-                <div class="grid grid-cols-1 md:grid-cols-12">
-                    <div
-                        class="md:col-span-8 p-8 md:p-16 border-b md:border-b-0 md:border-r border-line flex flex-col justify-center">
-                        <div class="text-sm leading-relaxed max-w-2xl text-deep mx-auto space-y-6 projects-context-text">
-                            <p>
-                                "Inui Architects" is a Tokyo-based architectural firm that designs a wide range of
-                                genres, including public buildings such as stations and schools, welfare facilities,
-                                housing, interiors, and public plazas. In recent years, the firm has recognized the
-                                importance of "commons" (shared assets) and the "act of commoning" in society and
-                                explores architectural forms that nurture such commons. We also explore the various
-                                possibilities of the commons, drawing on our experience in "Learning from Little Spaces"
-                                research.
-                            </p>
-                            <p>
-                                For projects of a more public nature, we emphasize the importance of local research and
-                                hearings. We place importance on accurately grasping the social significance and
-                                enhancing projects while conducting research from various perspectives. For
-                                welfare-related projects in particular, we consider not only planning to improve care
-                                but also the impact of the project on community development.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="md:col-span-4 p-8 md:p-16 flex items-center justify-center relative overflow-hidden">
-                        <div class="parallax-wrapper w-full h-[300px] md:h-full max-h-[400px] projects-context-image">
-                            <img src="./images/banner_4.jpg" alt="Talk event" class="parallax-img" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION HEADER: EVENTS -->
-            <section
-                class="border-b border-line px-8 md:px-16 py-10 flex justify-between items-center bg-white reveal-section events-header-section">
-                <h2 class="font-heading text-6xl md:text-8xl uppercase header-anim events-header-title">EVENTS</h2>
-                <div class="w-24 md:w-32 h-[1px] bg-black line-expand"></div>
-            </section>
-
-            <!-- Events Details -->
-            <section class="border-b border-line p-8 md:p-16 text-center md:text-left content-vis-auto reveal-section event-details-section">
-                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
-                    <div class="md:col-span-5 flex flex-col justify-center">
-                        <h2
-                            class="font-heading text-4xl md:text-5xl text-lacquer mb-2 max-w-xs uppercase leading-tight event-date">
-                            04, tháng 04, 2026<br>
-                            08:30 - 11:30
-                        </h2>
-                    </div>
-                    <div
-                        class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12 text-sm text-left align-top">
-                        <div class="space-y-6">
-                            <div class="flex gap-4 group event-detail-row">
-                                <span class="text-lacquer font-semibold w-20 flex-shrink-0 event-detail-label">Location</span>
-                                <span class="font-medium text-deep group-hover:text-lacquer transition">Grand Concert
-                                    Hall<br>Vietnam National Academy of Music<br>77 Hao Nam, Cho Dua, Dong Da,
-                                    Hanoi</span>
-                            </div>
-                            <div class="flex gap-4 group event-detail-row">
-                                <span class="text-lacquer font-semibold w-20 flex-shrink-0 event-detail-label">Format</span>
-                                <span class="font-medium text-deep group-hover:text-lacquer transition">Offline</span>
-                            </div>
-                            <div class="flex gap-4 group event-detail-row">
-                                <span class="text-lacquer font-semibold w-20 flex-shrink-0 event-detail-label">Language</span>
-                                <span class="font-medium text-deep group-hover:text-lacquer transition">English with
-                                    Vietnamese subtitle</span>
-                            </div>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="flex gap-4 group event-detail-row">
-                                <span class="text-lacquer font-semibold w-24 flex-shrink-0 event-detail-label">Fee</span>
-                                <span class="font-medium text-deep group-hover:text-lacquer transition">Free to the
-                                    public</span>
-                            </div>
-                            <div class="flex gap-4 group event-detail-row">
-                                <span class="text-lacquer font-semibold w-24 flex-shrink-0 event-detail-label">For</span>
-                                <span class="font-medium text-deep group-hover:text-lacquer transition">Designed
-                                    primarily for architects, and open to other creative practitioners interested in
-                                    interdisciplinary thinking.</span>
-                            </div>
-                            <div class="flex gap-4 group event-detail-row">
-                                <span class="text-lacquer font-semibold w-24 flex-shrink-0 event-detail-label">Available Slots</span>
-                                <span class="font-medium text-deep group-hover:text-lacquer transition">500</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Our Series Carousel Parallax -->
-            <section
-                class="border-b border-line py-16 px-8 flex flex-col items-center bg-[#FDFDFD] content-vis-auto reveal-section series-section">
-                <h2 class="font-heading text-4xl md:text-5xl mb-6 header-anim series-title">Our Series</h2>
-                <p class="text-center text-sm max-w-2xl mb-12 text-deep leading-relaxed series-description">
-                    TOTO Architect Talk, which was launched in 2017, successfully coordinated 06 talks from renowned
-                    Japanese architects: Shigeru Ban, Hiroshi Naito, Takahru Tezuka, and Akihisa Hirata, Yoshiharu
-                    Tsukamoto, Junya Ishigami.
-                </p>
-
-                <div class="relative w-full max-w-5xl group cursor-pointer img-zoom-wrapper">
-                    <button
-                        class="absolute -left-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10">
-                        <i data-lucide="chevron-left" class="w-12 h-12 font-thin"></i>
-                    </button>
-                    <button
-                        class="absolute -right-12 top-1/2 -translate-y-1/2 text-black hover:text-lacquer hidden md:block hover:scale-110 transition z-10">
-                        <i data-lucide="chevron-right" class="w-12 h-12 font-thin"></i>
-                    </button>
-                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                            alt="Event presentation"
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" />
-                    </div>
-
-                    <div class="flex justify-center mt-8">
-                        <a href="#"
-                            class="bg-lacquer text-white font-sans text-sm px-8 py-3 uppercase tracking-wider hover:bg-black transition shadow-lg shrink-0 w-[80%] md:w-auto text-center border-t-4 border-b-[6px] border-b-[#8c171a] border-t-lacquer">
-                            Art.itecture #01
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION HEADER: REGISTER -->
-            <section
-                class="border-b border-line px-8 md:px-16 py-10 flex justify-between items-center bg-white reveal-section register-header-section"
-                id="register" style="scroll-margin-top: 100px;">
-                <h2 class="font-heading text-6xl md:text-8xl uppercase header-anim register-header-title">REGISTER</h2>
-                <div class="w-24 md:w-32 h-[1px] bg-black line-expand"></div>
-            </section>
-
-            <!-- Form & FAQ -->
-            <section class="border-b border-line content-vis-auto reveal-section register-section">
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black h-full bg-[#FFFFFF]">
-                    <div class="p-8 md:p-16">
-                        <form class="space-y-6 max-w-md mx-auto xl:mx-0" id="registration-form">
-                            <div class="flex flex-col group form-field-group">
-                                <label
-                                    class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition">Full
-                                    Name</label>
-                                <input type="text" name="fullName" class="input-field" required>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="flex flex-col group form-field-group">
+                        class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black h-full bg-[#FFFFFF]"
+                    >
+                        <div class="p-8 md:p-16">
+                            <form
+                                class="space-y-6 max-w-md mx-auto xl:mx-0"
+                                id="registration-form"
+                            >
+                                <div
+                                    class="flex flex-col group form-field-group"
+                                >
                                     <label
-                                        class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition">Phone
-                                        Number</label>
-                                    <input type="tel" name="phone" class="input-field" required>
+                                        class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition"
+                                        >Full Name</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="fullName"
+                                        class="input-field"
+                                        required
+                                    />
                                 </div>
-                                <div class="flex flex-col group form-field-group">
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div
+                                        class="flex flex-col group form-field-group"
+                                    >
+                                        <label
+                                            class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition"
+                                            >Phone Number</label
+                                        >
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            class="input-field"
+                                            required
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex flex-col group form-field-group"
+                                    >
+                                        <label
+                                            class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition"
+                                            >Age</label
+                                        >
+                                        <input
+                                            type="number"
+                                            name="age"
+                                            class="input-field"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex flex-col group form-field-group"
+                                >
                                     <label
-                                        class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition">Age</label>
-                                    <input type="number" name="age" class="input-field">
+                                        class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition"
+                                        >Email</label
+                                    >
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        class="input-field"
+                                        required
+                                    />
                                 </div>
-                            </div>
 
-                            <div class="flex flex-col group form-field-group">
-                                <label
-                                    class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition">Email</label>
-                                <input type="email" name="email" class="input-field" required>
-                            </div>
+                                <div
+                                    class="flex flex-col group form-field-group"
+                                >
+                                    <label
+                                        class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition"
+                                        >Occupation</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="occupation"
+                                        class="input-field"
+                                    />
+                                </div>
 
-                            <div class="flex flex-col group form-field-group">
-                                <label
-                                    class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition">Occupation</label>
-                                <input type="text" name="occupation" class="input-field">
-                            </div>
+                                <div
+                                    class="flex flex-col group form-field-group"
+                                >
+                                    <label
+                                        class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition"
+                                        >Company/University</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="company"
+                                        class="input-field"
+                                    />
+                                </div>
 
-                            <div class="flex flex-col group form-field-group">
-                                <label
-                                    class="text-lacquer text-xs uppercase mb-1 font-medium px-2 group-focus-within:font-bold transition">Company/University</label>
-                                <input type="text" name="company" class="input-field">
-                            </div>
-
-                            <button type="submit" id="submit-btn"
-                                class="mt-4 w-full bg-lacquer text-white rounded-full py-4 text-sm font-bold uppercase tracking-widest hover:bg-black transition cursor-pointer hover:shadow-lg active:scale-95 transform duration-150">
-                                <span class="submit-text">Submit register</span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="p-8 md:p-16 flex flex-col justify-center">
-                        <h3
-                            class="text-deep text-lg md:text-xl font-medium mb-10 text-center xl:text-left font-heading hover:text-lacquer transition faq-title">
-                            Frequently Asked Questions (FAQ)</h3>
-                        <div class="space-y-2 max-w-xl mx-auto xl:mx-0 w-full faq-list">
-                            <div class="faq-item form-faq-item border-b border-black pb-3 hover:border-lacquer transition">
                                 <button
-                                    class="w-full flex justify-between items-center text-left group focus:outline-none"
-                                    onclick="this.parentElement.classList.toggle('active')">
-                                    <span class="font-medium text-sm text-deep group-hover:text-lacquer transition">Do I
-                                        have to pay a fee to attend the Architect Talk?</span>
-                                    <i data-lucide="chevron-down"
-                                        class="faq-icon transition-transform w-4 h-4 text-lacquer"></i>
+                                    type="submit"
+                                    id="submit-btn"
+                                    class="mt-4 w-full bg-lacquer text-white rounded-full py-4 text-sm font-bold uppercase tracking-widest hover:bg-black transition cursor-pointer hover:shadow-lg active:scale-95 transform duration-150"
+                                >
+                                    <span class="submit-text"
+                                        >Submit register</span
+                                    >
                                 </button>
-                                <div class="faq-answer text-gray-sub text-sm">
-                                    No, the event is free to the public.
+                            </form>
+                        </div>
+                        <div class="p-8 md:p-16 flex flex-col justify-center">
+                            <h3
+                                class="text-deep text-lg md:text-xl font-medium mb-10 text-center xl:text-left font-heading hover:text-lacquer transition faq-title"
+                            >
+                                Frequently Asked Questions (FAQ)
+                            </h3>
+                            <div
+                                class="space-y-2 max-w-xl mx-auto xl:mx-0 w-full faq-list"
+                            >
+                                <div
+                                    class="faq-item form-faq-item border-b border-black pb-3 hover:border-lacquer transition"
+                                >
+                                    <button
+                                        class="w-full flex justify-between items-center text-left group focus:outline-none"
+                                        onclick="
+                                            this.parentElement.classList.toggle(
+                                                'active',
+                                            )
+                                        "
+                                    >
+                                        <span
+                                            class="font-medium text-sm text-deep group-hover:text-lacquer transition"
+                                            >Do I have to pay a fee to attend
+                                            the Architect Talk?</span
+                                        >
+                                        <i
+                                            data-lucide="chevron-down"
+                                            class="faq-icon transition-transform w-4 h-4 text-lacquer"
+                                        ></i>
+                                    </button>
+                                    <div
+                                        class="faq-answer text-gray-sub text-sm"
+                                    >
+                                        No, the event is free to the public.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="faq-item form-faq-item border-b border-black pb-3 pt-3 hover:border-lacquer transition">
-                                <button
-                                    class="w-full flex justify-between items-center text-left group focus:outline-none"
-                                    onclick="this.parentElement.classList.toggle('active')">
-                                    <span class="font-medium text-sm text-deep group-hover:text-lacquer transition">In
-                                        what language will the Architect Talk be presented?</span>
-                                    <i data-lucide="chevron-down"
-                                        class="faq-icon transition-transform w-4 h-4 text-lacquer"></i>
-                                </button>
-                                <div class="faq-answer text-gray-sub text-sm">
-                                    The talk will be presented in English with Vietnamese subtitles.
+                                <div
+                                    class="faq-item form-faq-item border-b border-black pb-3 pt-3 hover:border-lacquer transition"
+                                >
+                                    <button
+                                        class="w-full flex justify-between items-center text-left group focus:outline-none"
+                                        onclick="
+                                            this.parentElement.classList.toggle(
+                                                'active',
+                                            )
+                                        "
+                                    >
+                                        <span
+                                            class="font-medium text-sm text-deep group-hover:text-lacquer transition"
+                                            >In what language will the Architect
+                                            Talk be presented?</span
+                                        >
+                                        <i
+                                            data-lucide="chevron-down"
+                                            class="faq-icon transition-transform w-4 h-4 text-lacquer"
+                                        ></i>
+                                    </button>
+                                    <div
+                                        class="faq-answer text-gray-sub text-sm"
+                                    >
+                                        The talk will be presented in English
+                                        with Vietnamese subtitles.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="faq-item form-faq-item border-b border-black pb-3 pt-3 hover:border-lacquer transition">
-                                <button
-                                    class="w-full flex justify-between items-center text-left group focus:outline-none"
-                                    onclick="this.parentElement.classList.toggle('active')">
-                                    <span class="font-medium text-sm text-deep group-hover:text-lacquer transition">Is
-                                        the lecture recorded?</span>
-                                    <i data-lucide="chevron-down"
-                                        class="faq-icon transition-transform w-4 h-4 text-lacquer"></i>
-                                </button>
-                                <div class="faq-answer text-gray-sub text-sm">
-                                    Yes, the lecture will be recorded for archival purposes.
+                                <div
+                                    class="faq-item form-faq-item border-b border-black pb-3 pt-3 hover:border-lacquer transition"
+                                >
+                                    <button
+                                        class="w-full flex justify-between items-center text-left group focus:outline-none"
+                                        onclick="
+                                            this.parentElement.classList.toggle(
+                                                'active',
+                                            )
+                                        "
+                                    >
+                                        <span
+                                            class="font-medium text-sm text-deep group-hover:text-lacquer transition"
+                                            >Is the lecture recorded?</span
+                                        >
+                                        <i
+                                            data-lucide="chevron-down"
+                                            class="faq-icon transition-transform w-4 h-4 text-lacquer"
+                                        ></i>
+                                    </button>
+                                    <div
+                                        class="faq-answer text-gray-sub text-sm"
+                                    >
+                                        Yes, the lecture will be recorded for
+                                        archival purposes.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="faq-item form-faq-item border-b border-black pb-3 pt-3 hover:border-lacquer transition">
-                                <button
-                                    class="w-full flex justify-between items-center text-left group focus:outline-none"
-                                    onclick="this.parentElement.classList.toggle('active')">
-                                    <span class="font-medium text-sm text-deep group-hover:text-lacquer transition">When
-                                        will the lecture open for registration?</span>
-                                    <i data-lucide="chevron-down"
-                                        class="faq-icon transition-transform w-4 h-4 text-lacquer"></i>
-                                </button>
-                                <div class="faq-answer text-gray-sub text-sm">
-                                    Registration is open now and will close when all slots are filled.
+                                <div
+                                    class="faq-item form-faq-item border-b border-black pb-3 pt-3 hover:border-lacquer transition"
+                                >
+                                    <button
+                                        class="w-full flex justify-between items-center text-left group focus:outline-none"
+                                        onclick="
+                                            this.parentElement.classList.toggle(
+                                                'active',
+                                            )
+                                        "
+                                    >
+                                        <span
+                                            class="font-medium text-sm text-deep group-hover:text-lacquer transition"
+                                            >When will the lecture open for
+                                            registration?</span
+                                        >
+                                        <i
+                                            data-lucide="chevron-down"
+                                            class="faq-icon transition-transform w-4 h-4 text-lacquer"
+                                        ></i>
+                                    </button>
+                                    <div
+                                        class="faq-answer text-gray-sub text-sm"
+                                    >
+                                        Registration is open now and will close
+                                        when all slots are filled.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- SECTION HEADER: ABOUT US -->
-            <section
-                class="border-b border-line px-8 md:px-16 py-10 flex flex-row-reverse justify-between items-center bg-white reveal-section about-header-section"
-                id="about">
-                <h2 class="font-heading text-6xl md:text-8xl uppercase header-anim about-header-title">ABOUT US</h2>
-                <div class="w-24 md:w-32 h-[1px] bg-black line-expand"></div>
-            </section>
+                <!-- SECTION HEADER: ABOUT US -->
+                <section
+                    class="border-b border-line px-8 md:px-16 py-10 flex flex-row-reverse justify-between items-center bg-white reveal-section about-header-section"
+                    id="about"
+                >
+                    <h2
+                        class="font-heading text-6xl md:text-8xl uppercase header-anim about-header-title"
+                    >
+                        ABOUT US
+                    </h2>
+                    <div
+                        class="w-24 md:w-32 h-[1px] bg-black line-expand"
+                    ></div>
+                </section>
 
-            <!-- Footer / About Layout -->
-            <section class="border-b border-line content-vis-auto reveal-section about-section">
-                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black">
-                    <div class="p-8 md:p-16 flex flex-col justify-between h-full bg-[#FFFFFF]">
-                        <div class="space-y-6 text-sm text-deep leading-relaxed max-w-lg mb-12">
-                            <p class="about-text">
-                                TOTO Architect Talk is an annual events including architect ltalk and design contest
-                                organized by TOTO Vietnam Co., Ltd. in collaboration with TOTO Gallery MA, media
-                                sponsored by the Vietnam Association of Architects. TOTO Architect Talk is not only an
-                                opportunity to exchange and learn from Japanese Architects but also a chance for young
-                                architects to showcase their talents.
-                            </p>
-                            <p class="about-text">
-                                TOTO Vietnam Co., Ltd. hope to foster community activities in Vietnam, especially the
-                                architectural community, aiming to bring many practical values. This is also the
-                                direction throughout the TOTO corporation.
-                            </p>
+                <!-- Footer / About Layout -->
+                <section
+                    class="border-b border-line content-vis-auto reveal-section about-section"
+                >
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black"
+                    >
+                        <div
+                            class="p-8 md:p-16 flex flex-col justify-between h-full bg-[#FFFFFF]"
+                        >
+                            <div
+                                class="space-y-6 text-sm text-deep leading-relaxed max-w-lg mb-12"
+                            >
+                                <p class="about-text">
+                                    TOTO Architect Talk is an annual events
+                                    including architect ltalk and design contest
+                                    organized by TOTO Vietnam Co., Ltd. in
+                                    collaboration with TOTO Gallery MA, media
+                                    sponsored by the Vietnam Association of
+                                    Architects. TOTO Architect Talk is not only
+                                    an opportunity to exchange and learn from
+                                    Japanese Architects but also a chance for
+                                    young architects to showcase their talents.
+                                </p>
+                                <p class="about-text">
+                                    TOTO Vietnam Co., Ltd. hope to foster
+                                    community activities in Vietnam, especially
+                                    the architectural community, aiming to bring
+                                    many practical values. This is also the
+                                    direction throughout the TOTO corporation.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h5
+                                    class="text-lacquer text-xs font-semibold mb-3"
+                                >
+                                    Reach us at
+                                </h5>
+                                <ul
+                                    class="space-y-1 text-sm text-deep underline decoration-black/20 underline-offset-4 decoration-1"
+                                >
+                                    <li>
+                                        <a
+                                            href="mailto:email@email.com"
+                                            class="hover:text-lacquer transition about-contact-link"
+                                            >email@email.com</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="tel:+84912345678"
+                                            class="hover:text-lacquer transition about-contact-link"
+                                            >(+84)9 123 456 789</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://fanpage.com/vn/"
+                                            target="_blank"
+                                            class="hover:text-lacquer transition about-contact-link"
+                                            >fanpage.com/vn/</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://facebook.com/vn/"
+                                            target="_blank"
+                                            class="hover:text-lacquer transition about-contact-link"
+                                            >facebook.com/vn/</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://youtube.com/vn/"
+                                            target="_blank"
+                                            class="hover:text-lacquer transition about-contact-link"
+                                            >youtube.com/vn/</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div>
-                            <h5 class="text-lacquer text-xs font-semibold mb-3">Reach us at</h5>
-                            <ul
-                                class="space-y-1 text-sm text-deep underline decoration-black/20 underline-offset-4 decoration-1">
-                                <li><a href="mailto:email@email.com"
-                                        class="hover:text-lacquer transition about-contact-link">email@email.com</a></li>
-                                <li><a href="tel:+84912345678" class="hover:text-lacquer transition about-contact-link">(+84)9 123 456
-                                        789</a></li>
-                                <li><a href="https://fanpage.com/vn/" target="_blank"
-                                        class="hover:text-lacquer transition about-contact-link">fanpage.com/vn/</a></li>
-                                <li><a href="https://facebook.com/vn/" target="_blank"
-                                        class="hover:text-lacquer transition about-contact-link">facebook.com/vn/</a></li>
-                                <li><a href="https://youtube.com/vn/" target="_blank"
-                                        class="hover:text-lacquer transition about-contact-link">youtube.com/vn/</a></li>
-                            </ul>
+                        <div
+                            class="p-8 md:p-16 flex flex-col justify-center gap-12 text-center bg-[#FFFFFF]"
+                        >
+                            <div
+                                class="group hover:bg-[#fafafa] transition p-2 cursor-pointer"
+                            >
+                                <h5
+                                    class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label"
+                                >
+                                    Organized by
+                                </h5>
+                                <div
+                                    class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400"
+                                >
+                                    LOGO PLACEHOLDER
+                                </div>
+                            </div>
+                            <div
+                                class="group hover:bg-[#fafafa] transition p-2 cursor-pointer"
+                            >
+                                <h5
+                                    class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label"
+                                >
+                                    Sponsored by
+                                </h5>
+                                <div
+                                    class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400"
+                                >
+                                    LOGO PLACEHOLDER
+                                </div>
+                            </div>
+                            <div
+                                class="group hover:bg-[#fafafa] transition p-2 cursor-pointer"
+                            >
+                                <h5
+                                    class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label"
+                                >
+                                    Academic Partners
+                                </h5>
+                                <div
+                                    class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400"
+                                >
+                                    LOGO PLACEHOLDER
+                                </div>
+                            </div>
+                            <div
+                                class="group hover:bg-[#fafafa] transition p-2 cursor-pointer"
+                            >
+                                <h5
+                                    class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label"
+                                >
+                                    Media Partners
+                                </h5>
+                                <div
+                                    class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400"
+                                >
+                                    LOGO PLACEHOLDER
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                    <div class="p-8 md:p-16 flex flex-col justify-center gap-12 text-center bg-[#FFFFFF]">
-                        <div class="group hover:bg-[#fafafa] transition p-2 cursor-pointer">
-                            <h5
-                                class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label">
-                                Organized by</h5>
-                            <div
-                                class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400">
-                                LOGO PLACEHOLDER</div>
-                        </div>
-                        <div class="group hover:bg-[#fafafa] transition p-2 cursor-pointer">
-                            <h5
-                                class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label">
-                                Sponsored by</h5>
-                            <div
-                                class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400">
-                                LOGO PLACEHOLDER</div>
-                        </div>
-                        <div class="group hover:bg-[#fafafa] transition p-2 cursor-pointer">
-                            <h5
-                                class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label">
-                                Academic Partners</h5>
-                            <div
-                                class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400">
-                                LOGO PLACEHOLDER</div>
-                        </div>
-                        <div class="group hover:bg-[#fafafa] transition p-2 cursor-pointer">
-                            <h5
-                                class="text-lacquer text-sm font-medium mb-4 group-hover:underline decoration-lacquer/30 underline-offset-4 about-partner-label">
-                                Media Partners</h5>
-                            <div
-                                class="w-full h-12 bg-gray-50 flex items-center justify-center text-[10px] text-gray-400">
-                                LOGO PLACEHOLDER</div>
-                        </div>
+                <!-- Bottom Copyright Header -->
+                <footer
+                    class="py-6 px-8 md:px-16 flex flex-col sm:flex-row justify-between items-center text-xs text-deep gap-4 bg-white reveal-section"
+                >
+                    <div class="flex flex-col sm:flex-row sm:gap-4">
+                        <span>Bản quyền © thuộc về Sun Group DMD.</span>
+                        <span>Ðơn vị tổ chức</span>
                     </div>
-                </div>
-            </section>
-
-            <!-- Bottom Copyright Header -->
-            <footer
-                class="py-6 px-8 md:px-16 flex flex-col sm:flex-row justify-between items-center text-xs text-deep gap-4 bg-white reveal-section">
-                <div class="flex flex-col sm:flex-row sm:gap-4">
-                    <span>Bản quyền © thuộc về Sun Group DMD.</span>
-                    <span>Ðơn vị tổ chức</span>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 underline decoration-black/20 underline-offset-4">
-                    <a href="#" class="hover:text-lacquer transition">Chính sách bảo mật</a>
-                    <span class="hidden sm:inline">-</span>
-                    <a href="#" class="hover:text-lacquer transition">Ðiều khoản sử dụng</a>
-                </div>
-            </footer>
-        </div>
-    </main>
-
-    <!-- Thank You Popup Popup HTML -->
-    <div id="thank-you-popup"
-        class="fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-md bg-deep/80">
-        <div
-            class="bg-white text-deep p-12 md:p-16 border border-line flex flex-col max-w-lg w-full mx-4 text-center relative shadow-2xl">
-            <button id="close-popup" class="absolute top-6 right-6 text-gray-sub hover:text-lacquer transition">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-            <div
-                class="w-16 h-16 bg-lacquer text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-md">
-                <i data-lucide="check" class="w-8 h-8"></i>
+                    <div
+                        class="flex flex-col sm:flex-row gap-2 sm:gap-4 underline decoration-black/20 underline-offset-4"
+                    >
+                        <a href="#" class="hover:text-lacquer transition"
+                            >Chính sách bảo mật</a
+                        >
+                        <span class="hidden sm:inline">-</span>
+                        <a href="#" class="hover:text-lacquer transition"
+                            >Ðiều khoản sử dụng</a
+                        >
+                    </div>
+                </footer>
             </div>
-            <h3 class="font-heading text-4xl mb-4 uppercase text-deep italic">Thank You</h3>
-            <p class="text-gray-sub mb-10 text-sm leading-relaxed">
-                Đăng ký của bạn đã được ghi nhận. Chúng tôi sẽ gửi thông tin cập nhật qua email của bạn sớm nhất.
-            </p>
-            <button id="btn-done"
-                class="bg-lacquer text-white font-sans text-sm px-10 py-4 uppercase tracking-wider hover:bg-black transition w-full rounded-full border border-black/10">
-                Close & Return
-            </button>
+        </main>
+
+        <!-- Thank You Popup Popup HTML -->
+        <div
+            id="thank-you-popup"
+            class="fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-md bg-deep/80"
+        >
+            <div
+                class="bg-white text-deep p-12 md:p-16 border border-line flex flex-col max-w-lg w-full mx-4 text-center relative shadow-2xl"
+            >
+                <button
+                    id="close-popup"
+                    class="absolute top-6 right-6 text-gray-sub hover:text-lacquer transition"
+                >
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <div
+                    class="w-16 h-16 bg-lacquer text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-md"
+                >
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h3
+                    class="font-heading text-4xl mb-4 uppercase text-deep italic"
+                >
+                    Thank You
+                </h3>
+                <p class="text-gray-sub mb-10 text-sm leading-relaxed">
+                    Đăng ký của bạn đã được ghi nhận. Chúng tôi sẽ gửi thông tin
+                    cập nhật qua email của bạn sớm nhất.
+                </p>
+                <button
+                    id="btn-done"
+                    class="bg-lacquer text-white font-sans text-sm px-10 py-4 uppercase tracking-wider hover:bg-black transition w-full rounded-full border border-black/10"
+                >
+                    Close & Return
+                </button>
+            </div>
         </div>
-    </div>
 
-    <script src="./scripts/main.js"></script>
-</body>
-
+        <script src="./scripts/main.js"></script>
+    </body>
 </html>

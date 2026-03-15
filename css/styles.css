@@ -168,3 +168,8 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+/* GSAP Smooth Scroll Vibe */
+html.gsap-active {
+    scroll-behavior: auto !important;
+}
