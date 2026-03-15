@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('../fonts/SF-Pro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'The Seasons';
+    src: url('../fonts/The%20Seasons%20Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'The Seasons';
+    src: url('../fonts/The%20Seasons%20Light%20Italic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'The Seasons';
+    src: url('../fonts/The%20Seasons%20Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'The Seasons';
+    src: url('../fonts/The%20Seasons%20Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'The Seasons';
+    src: url('../fonts/The%20Seasons%20Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'The Seasons';
+    src: url('../fonts/The%20Seasons%20Bold%20Italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+body {
+    background-color: white;
+    color: var(--color-deep-black);
+    overflow-x: hidden;
+    font-family: "SF Pro Display", "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-heading {
+    font-family: "The Seasons", "Playfair Display", serif;
+}
+
+.border-line {
+    border-color: #000;
+}
+
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    background-color: #B32025;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mask-container {
+    overflow: hidden;
+    line-height: 1.1;
+}
+
+.parallax-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.parallax-img {
+    height: 120%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: -10%;
+    left: 0;
+}
+
+.img-zoom-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.img-zoom-wrapper img {
+    transition: transform 0.5s ease;
+}
+
+.img-zoom-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, margin-top 0.3s ease-out;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    margin-top: 0.5rem;
+    opacity: 1;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.split-word {
+    display: inline-block;
+}
+
+.input-field {
+    width: 100%;
+    background-color: #F3F3F3;
+    border-radius: 9999px;
+    padding: 0.75rem 1.25rem;
+    outline: none;
+    transition: all 0.3s;
+    font-size: 0.875rem;
+}
+
+.input-field:focus {
+    background-color: #E5E5E5;
+}
+
+#thank-you-popup {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#thank-you-popup.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
